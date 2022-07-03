@@ -1,9 +1,7 @@
 package com.camping.dev.controller;
 
 import com.camping.dev.model.vo.GoodsSampleVO;
-import com.camping.dev.model.vo.SampleVO;
 import com.camping.dev.service.GoodsService;
-import com.camping.dev.service.SampleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,7 @@ public class HomeController {
 
     private final Logger logger = LoggerFactory.getLogger("SampleController's Log");
 
-    @PostMapping("/")
+    @GetMapping("/")
     public @ResponseBody
     List<GoodsSampleVO> getSampleList() {
 

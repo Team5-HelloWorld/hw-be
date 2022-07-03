@@ -7,7 +7,19 @@
 
     <select id="getSampleList" resultType="com.camping.dev.model.vo.GoodsSampleVO">
         <![CDATA[
-        select id, category, name, image_url, price
+        select id, category, name, price, reviews, image_url
+        from GOODS_SAMPLE
+        ]]>
+    </select>
+
+    <insert id="insertSampleData" parameterType="map">
+        insert into GOODS_SAMPLE (category, name, price, reviews, image_Url)
+        values (#{category}, #{name}, #{price}, #{reviews}, #{imageUrl})
+    </insert>
+
+    <select id="getCount" resultType="int">
+        <![CDATA[
+        select count(*)
         from GOODS_SAMPLE
         ]]>
     </select>
