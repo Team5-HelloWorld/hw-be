@@ -30,9 +30,9 @@ public class MemberServiceImpl implements MemberService{
 
         if (memberMapper.searchByEmail(member.getEmail()) == 0) {
             memberMapper.insertMemberInfo(member);
-            memberRegisterVO.setStatus("register success");
+            memberRegisterVO.setStatus("9000");
         } else
-            memberRegisterVO.setStatus("idDuplicate");
+            memberRegisterVO.setStatus("9001");
 
         return memberRegisterVO;
 

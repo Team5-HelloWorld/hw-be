@@ -27,16 +27,16 @@ public class LoginServiceImpl implements LoginService{
 
             LoginCompareVO loginCompareVO = memberMapper.loginByEmail(loginInfoVO.getEmail());
             if (BCryptUtil.isMatch(loginInfoVO.getPassword(), loginCompareVO.getPassword())) {
-                loginResultVO.setStatus("login success");
+                loginResultVO.setStatus("8000");
             } else {
-                loginResultVO.setStatus("wrong password");
+                loginResultVO.setStatus("8001");
             }
 
             BeanUtils.copyProperties(loginCompareVO, loginResultVO);
 
         } catch (NullPointerException e) {
 
-            loginResultVO.setStatus("wrong Id");
+            loginResultVO.setStatus("8002");
 
         }
 

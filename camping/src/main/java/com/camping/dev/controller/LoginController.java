@@ -26,7 +26,7 @@ public class LoginController {
 
         LoginResultVO resultVO = loginService.memberLogin(loginInfoVO);
 
-        if("login success".equals(resultVO.getStatus())) {
+        if("8000".equals(resultVO.getStatus())) {
 
             AuthInfoVO authInfo = new AuthInfoVO();
             authInfo.setEmail(resultVO.getEmail());
