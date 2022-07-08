@@ -1,6 +1,5 @@
 package com.camping.dev.config;
 
-import com.camping.dev.util.BCryptUtilImpl;
 import com.camping.dev.util.BCryptUtil;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -64,11 +63,6 @@ public class RootConfig {
     @Bean
     public DataSourceTransactionManager txManager() {
         return new DataSourceTransactionManager(dataSource());
-    }
-
-    @Bean
-    public BCryptUtil encryptConfigure() {
-        return new BCryptUtilImpl();
     }
 
 }

@@ -31,5 +31,14 @@
         WHERE email = #{email}
     </select>
 
+    <!-- 로그인(아이디, 패스워드 검색) -->
+    <select id="loginByEmail" parameterType="String" resultType="com.camping.dev.model.vo.LoginCompareVO">
+        SELECT
+            email
+          , password
+          , name
+         FROM MEMBER
+        WHERE email = #{email}
+    </select>
 
 </mapper>

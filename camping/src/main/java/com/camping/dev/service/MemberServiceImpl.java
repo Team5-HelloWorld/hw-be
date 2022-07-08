@@ -15,13 +15,12 @@ import org.springframework.stereotype.Service;
 public class MemberServiceImpl implements MemberService{
 
     private MemberMapper memberMapper;
-    private BCryptUtil bcrypt;
 
     private final Logger logger = LoggerFactory.getLogger("MemberServiceImpl's log");
 
     public MemberRegisterVO registerMember(MemberRegisterVO memberRegisterVO) {
 
-        String encrypted = bcrypt.encrypt(memberRegisterVO.getPassword());
+        String encrypted = BCryptUtil.encrypt(memberRegisterVO.getPassword());
         memberRegisterVO.setPassword(encrypted);
 
         logger.info(encrypted);
