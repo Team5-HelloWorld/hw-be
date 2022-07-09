@@ -6,12 +6,12 @@ import lombok.Data;
 public class ReviewVO {
 
     // 리뷰 작성자
-    public String email;
+    private String email;
 
     // 리뷰 내용
-    public String review;
+    private String review;
 
     // 리뷰 평점
-    public int grade;
+    private int grade;
 
 }

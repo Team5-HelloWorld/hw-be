@@ -41,4 +41,18 @@
         WHERE email = #{email}
     </select>
 
+    <!-- 해쉬값 검색 -->
+    <select id="searchHashedByEmail" parameterType="String" resultType="String">
+        SELECT password
+        FROM MEMBER
+        WHERE email = #{email}
+    </select>
+
+    <!-- 비밀번호 수정 -->
+    <update id="modifyPassword" parameterType="map">
+        UPDATE MEMBER
+           SET password = #{password}
+         WHERE email = #{email}
+    </update>
+
 </mapper>

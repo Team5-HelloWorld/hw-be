@@ -1,6 +1,5 @@
 package com.camping.dev.config;
 
-import com.camping.dev.util.BCryptUtil;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;

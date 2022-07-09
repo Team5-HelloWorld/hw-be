@@ -19,7 +19,7 @@ public class HomeController {
 
     private final Logger logger = LoggerFactory.getLogger("SampleController's Log");
 
-    @GetMapping("/")
+    @GetMapping
     public @ResponseBody
     List<GoodsSampleVO> getSampleList() {
         return goodsService.getSampleList();
