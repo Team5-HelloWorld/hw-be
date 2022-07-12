@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.camping.dev.mapper.RentalMapper">
+
+    <!-- 상품 아이디로 대여 시작 날짜와 대여 종료 날짜 검색 -->
+    <select id="getRentPeriod" parameterType="java.lang.Integer" resultType="com.camping.dev.model.vo.RentalPeriodVO">
+        SELECT rental_start_date, rental_end_date
+        FROM RENTAL
+        WHERE prd_id = #{id} AND rent_status = "01"
+    </select>
+
+    <insert id="insertRentalRequest" parameterType="map">
+        INSERT INTO
+            RENTAL
+            (
+                prd_id
+              , borrower_email
+              , rental_start_date
+              , rental_end_date
+              , rent_status
+            )
+            VALUES
+            (
+                #{prdId}
+              , #{borrowerEmail}
+              , #{rentalStartDate}
+              , #{rentalEndDate}
+              , #{rentStatus}
+            )
+    </insert>
+
+</mapper>

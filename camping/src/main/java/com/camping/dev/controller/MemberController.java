@@ -20,7 +20,7 @@ public class MemberController {
     private final Logger logger = LoggerFactory.getLogger("MemberController's Log");
 
     // 회원가입
-    @PostMapping("/register")
+    @PostMapping
     public MemberRegisterVO registerMember(@RequestBody MemberRegisterVO memberRegisterVO) {
 
         MemberRegisterVO resultVO = memberService.registerMember(memberRegisterVO);

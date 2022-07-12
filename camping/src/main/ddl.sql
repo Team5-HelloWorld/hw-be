@@ -52,3 +52,15 @@ create table MEMBER(
     name varchar(50) not null,
     grade int(10)
 );
+
+# Rental 테이블
+CREATE TABLE RENTAL(
+    id INT(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    prd_id INT(10),
+    lender_email VARCHAR(20),
+    borrower_email VARCHAR(20),
+    rental_start_date VARCHAR(20),
+    rental_end_date VARCHAR(20),
+    message VARCHAR(4000),
+    rent_status VARCHAR(20)
+);

@@ -22,6 +22,9 @@ public class GoodsDetailVO {
     // goodsInfo : 상품 상세정보
     private String goodsInfo;
 
+    // rentPeriod : 상품의 대여기간 정보
+    private List<RentalPeriodVO> rentPeriod;
+
     // review : 리뷰내용 (이메일, 리뷰내용, 리뷰평점)
     private List<ReviewVO> review;
 

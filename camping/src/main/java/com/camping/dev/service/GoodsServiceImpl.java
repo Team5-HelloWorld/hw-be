@@ -1,6 +1,7 @@
 package com.camping.dev.service;
 
 import com.camping.dev.mapper.GoodsMapper;
+import com.camping.dev.mapper.RentalMapper;
 import com.camping.dev.mapper.ReviewMapper;
 import com.camping.dev.model.vo.GoodsDetailVO;
 import com.camping.dev.model.vo.GoodsInfoVO;
@@ -26,6 +27,7 @@ public class GoodsServiceImpl implements GoodsService{
 
     private GoodsMapper goodsMapper;
     private ReviewMapper reviewMapper;
+    private RentalMapper rentalMapper;
     private final ClassPathResource mainCsvResource = new ClassPathResource("csv/main_page_data_renew.csv");
     private final Logger logger = LoggerFactory.getLogger("GoodsServiceImpl's log");
 
@@ -50,6 +52,7 @@ public class GoodsServiceImpl implements GoodsService{
         BeanUtils.copyProperties(goodsInfo, goodsDetail);
         goodsDetail.setGoodsInfo("");
         goodsDetail.setReview(reviewMapper.getReview(id));
+        goodsDetail.setRentPeriod(rentalMapper.getRentPeriod(id));
 
         return goodsDetail;
 
