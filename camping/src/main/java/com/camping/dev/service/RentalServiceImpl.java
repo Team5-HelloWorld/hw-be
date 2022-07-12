@@ -25,11 +25,11 @@ public class RentalServiceImpl implements RentalService {
                                              rentalRequestVO.getRentalStartDate(),
                                              rentalRequestVO.getRentalEndDate(),
                                              "01");
-            status = "7000";
+            status = "6000";
 
         } catch (SqlSessionException e) {
             e.printStackTrace();
-            status = "7001";
+            status = "6001";
         }
 
         return status;
