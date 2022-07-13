@@ -1,6 +1,7 @@
 package com.camping.dev.service;
 
 import com.camping.dev.mapper.RentalMapper;
+import com.camping.dev.model.vo.RentalRequestResponseVO;
 import com.camping.dev.model.vo.RentalRequestVO;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.session.SqlSessionException;
@@ -15,9 +16,9 @@ public class RentalServiceImpl implements RentalService {
     private RentalMapper rentalMapper;
     private final Logger logger = LoggerFactory.getLogger("RentalServiceImpl's log");
 
-    public String sendRentalRequest(RentalRequestVO rentalRequestVO) {
+    public RentalRequestResponseVO sendRentalRequest(RentalRequestVO rentalRequestVO) {
 
-        String status;
+        RentalRequestResponseVO resultVO = new RentalRequestResponseVO();
 
         try {
             rentalMapper.insertRentalRequest(rentalRequestVO.getId(),
@@ -25,14 +26,14 @@ public class RentalServiceImpl implements RentalService {
                                              rentalRequestVO.getRentalStartDate(),
                                              rentalRequestVO.getRentalEndDate(),
                                              "01");
-            status = "6000";
+            resultVO.setStatus("6000");
 
         } catch (SqlSessionException e) {
             e.printStackTrace();
-            status = "6001";
+            resultVO.setStatus("6001");
         }
 
-        return status;
+        return resultVO;
 
     }
 

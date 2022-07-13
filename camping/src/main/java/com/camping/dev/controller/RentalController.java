@@ -1,5 +1,6 @@
 package com.camping.dev.controller;
 
+import com.camping.dev.model.vo.RentalRequestResponseVO;
 import com.camping.dev.model.vo.RentalRequestVO;
 import com.camping.dev.service.RentalService;
 import org.slf4j.Logger;
@@ -19,10 +20,10 @@ public class RentalController {
 
     // 대여 요청 보내기
     @PostMapping
-    public String sendRentalRequest(@RequestBody RentalRequestVO rentalRequestVO) {
+    public RentalRequestResponseVO sendRentalRequest(@RequestBody RentalRequestVO rentalRequestVO) {
 
-        String status = rentalService.sendRentalRequest(rentalRequestVO);
-        return status;
+        RentalRequestResponseVO resultVO = rentalService.sendRentalRequest(rentalRequestVO);
+        return resultVO;
 
     }
 
