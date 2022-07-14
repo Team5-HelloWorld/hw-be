@@ -21,16 +21,15 @@ public class RentalServiceImpl implements RentalService {
         RentalRequestResponseVO resultVO = new RentalRequestResponseVO();
 
         try {
-            rentalMapper.insertRentalRequest(rentalRequestVO.getId(),
-                                             rentalRequestVO.getEmail(),
-                                             rentalRequestVO.getRentalStartDate(),
-                                             rentalRequestVO.getRentalEndDate(),
-                                             "01");
+
+            rentalMapper.insertRentalRequest(rentalRequestVO);
             resultVO.setStatus("6000");
 
         } catch (SqlSessionException e) {
             e.printStackTrace();
             resultVO.setStatus("6001");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return resultVO;

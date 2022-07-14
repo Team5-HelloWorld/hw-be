@@ -5,14 +5,22 @@
 
 <mapper namespace="com.camping.dev.mapper.RentalMapper">
 
+    <!--
+        대여 요청 코드
+        "01" : 대여 요청 중
+        "02" : 현재 대여중 (임대인이 수락)
+        "03" : 반환 완료 (기간 다됐거나 임차인 쪽에서 반환)
+    -->
+
     <!-- 상품 아이디로 대여 시작 날짜와 대여 종료 날짜 검색 -->
     <select id="getRentPeriod" parameterType="java.lang.Integer" resultType="com.camping.dev.model.vo.RentalPeriodVO">
         SELECT rental_start_date, rental_end_date
         FROM RENTAL
-        WHERE prd_id = #{id} AND rent_status = "01"
+        WHERE prd_id = #{id} AND rent_status = "01"    <!-- status 정의코드 적어주기 메모-->
     </select>
 
-    <insert id="insertRentalRequest" parameterType="map">
+    <!-- 상품 대여 요청 처리 -->
+    <insert id="insertRentalRequest" parameterType="com.camping.dev.model.vo.RentalRequestVO">
         INSERT INTO
             RENTAL
             (
@@ -24,12 +32,28 @@
             )
             VALUES
             (
-                #{prdId}
-              , #{borrowerEmail}
+                #{id}
+              , #{email}
               , #{rentalStartDate}
               , #{rentalEndDate}
-              , #{rentStatus}
+              , '01'
             )
     </insert>
+
+    <select id="getRentInfo" parameterType="com.camping.dev.model.vo.RentInfoRequestVO"
+                             resultType="com.camping.dev.model.vo.RentInfoVO">
+    SELECT g.id
+         , g.name
+         , g.image_url
+         , g.price
+         , r.lender_email
+         , r.rental_start_date
+         , r.rental_end_date
+         , r.rent_status
+      FROM GOODS AS g
+     RIGHT OUTER JOIN RENTAL as r
+        ON g.id = r.prd_id
+     WHERE r.borrower_email = #{email};
+    </select>
 
 </mapper>
