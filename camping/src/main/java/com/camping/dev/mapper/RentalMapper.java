@@ -1,9 +1,6 @@
 package com.camping.dev.mapper;
 
-import com.camping.dev.model.vo.RentInfoRequestVO;
-import com.camping.dev.model.vo.RentInfoVO;
-import com.camping.dev.model.vo.RentalPeriodVO;
-import com.camping.dev.model.vo.RentalRequestVO;
+import com.camping.dev.model.vo.*;
 
 import java.util.List;
 
@@ -16,6 +13,9 @@ public interface RentalMapper {
     public void insertRentalRequest(RentalRequestVO rentalRequestVO);
 
     // 임차인의 대여 정보 정리
-    public List<RentInfoVO> getRentInfo(RentInfoRequestVO rentInfoRequestVO);
+    public List<RentInfoVO> getRentInfo(EmailRequestVO emailRequestVO);
+
+    // 임대인의 정보 정리
+    public List<LendInfoVO> getLendInfo(EmailRequestVO emailRequestVO);
 
 }

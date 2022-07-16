@@ -1,7 +1,8 @@
 package com.camping.dev.service;
 
 import com.camping.dev.mapper.RentalMapper;
-import com.camping.dev.model.vo.RentInfoRequestVO;
+import com.camping.dev.model.vo.EmailRequestVO;
+import com.camping.dev.model.vo.LendInfoVO;
 import com.camping.dev.model.vo.RentInfoVO;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.session.SqlSessionException;
@@ -19,12 +20,29 @@ public class MypageServiceImpl implements MypageService{
     private final Logger logger = LoggerFactory.getLogger("MypageServiceImpl's log");
 
     @Override
-    public List<RentInfoVO> getRentInfo(RentInfoRequestVO requestVO) {
+    public List<RentInfoVO> getRentInfo(EmailRequestVO requestVO) {
 
         List<RentInfoVO> resultVO = null;
 
         try {
             resultVO = rentalMapper.getRentInfo(requestVO);
+        } catch(SqlSessionException e) {
+            e.printStackTrace();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultVO;
+
+    }
+
+    @Override
+    public List<LendInfoVO> getLendInfo(EmailRequestVO requestVO) {
+
+        List<LendInfoVO> resultVO = null;
+
+        try {
+            resultVO = rentalMapper.getLendInfo(requestVO);
         } catch(SqlSessionException e) {
             e.printStackTrace();
         } catch(Exception e) {

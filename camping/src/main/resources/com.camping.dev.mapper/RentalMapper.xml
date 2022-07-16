@@ -42,7 +42,8 @@
             )
     </insert>
 
-    <select id="getRentInfo" parameterType="com.camping.dev.model.vo.RentInfoRequestVO"
+    <!-- 임차인의 대여 정보 정리 -->
+    <select id="getRentInfo" parameterType="com.camping.dev.model.vo.EmailRequestVO"
                              resultType="com.camping.dev.model.vo.RentInfoVO">
     SELECT GD.ID
          , GD.NAME
@@ -52,10 +53,27 @@
          , RT.RENTAL_START_DATE
          , RT.RENTAL_END_DATE
          , RT.RENT_STATUS
-      FROM GOODS AS RT
-      LEFT OUTER JOIN RENTAL as GD
+      FROM RENTAL AS RT
+      LEFT OUTER JOIN GOODS as GD
         ON GD.ID = RT.PRD_ID
      WHERE RT.BORROWER_EMAIL = #{email};
+    </select>
+
+    <!-- 임대인의 대여 정보 정리 -->
+    <select id="getLendInfo" parameterType="com.camping.dev.model.vo.EmailRequestVO"
+            resultType="com.camping.dev.model.vo.LendInfoVO">
+        SELECT GD.ID
+             , GD.NAME
+             , GD.IMAGE_URL
+             , GD.PRICE
+             , RT.BORROWER_EMAIL
+             , RT.RENTAL_START_DATE
+             , RT.RENTAL_END_DATE
+             , RT.RENT_STATUS
+          FROM RENTAL AS RT
+          LEFT OUTER JOIN GOODS as GD
+           ON GD.ID = RT.PRD_ID
+        WHERE RT.LENDER_EMAIL = #{email};
     </select>
 
 </mapper>
