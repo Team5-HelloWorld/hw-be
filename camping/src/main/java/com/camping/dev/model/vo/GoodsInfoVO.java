@@ -14,6 +14,9 @@ public class GoodsInfoVO {
     // price : 상품 대여 가격
     private int price;
 
+    // lenderEmail : 상품 등록자
+    private String lenderEmail;
+
     // reviews : 리뷰 수
     private int reviews;
 

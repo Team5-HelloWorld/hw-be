@@ -13,68 +13,50 @@
                  , price
                  , reviews
                  , image_url
-            FROM GOODS_SAMPLE
+            FROM GOODS
         ]]>
     </select>
-
-    <insert id="insertSampleData" parameterType="map">
-        INSERT INTO
-            GOODS_SAMPLE
-            (
-                prd_id
-              , category
-              , name
-              , price
-              , reviews
-              , image_Url
-            )
-            VALUES (
-                #{prdId}
-              , #{category}
-              , #{name}
-              , #{price}
-              , #{reviews}
-              , #{imageUrl}
-            )
-    </insert>
 
     <insert id="insertInitData" parameterType="map">
         INSERT INTO
             GOODS
             (
-              prd_id_tmp
-            , category
-            , name
-            , price
-            , reviews
-            , image_url
+              PRD_ID_TMP
+            , CATEGORY
+            , NAME
+            , IMAGE_URL
+            , PRICE
+            , LENDER_EMAIL
+            , REVIEWS
             )
             VALUES
             (
               #{prdId}
             , #{category}
             , #{name}
-            , #{price}
-            , #{reviews}
             , #{imageUrl}
+            , #{price}
+            , #{email}
+            , #{reviews}
             )
     </insert>
 
     <select id="getCount" parameterType="map" resultType="int">
         <![CDATA[
-            SELECT count(*)
-            FROM GOODS_SAMPLE
+            SELECT COUNT(*)
+            FROM GOODS
         ]]>
     </select>
 
     <!-- 상품 아이디로 상품 정보 찾기 -->
     <select id="getGoodsInfo" resultType="com.camping.dev.model.vo.GoodsInfoVO" parameterType="java.lang.Integer">
-        SELECT name
-             , image_url
-             , price
-             , reviews
+        SELECT NAME
+             , IMAGE_URL
+             , PRICE
+             , LENDER_EMAIL
+             , REVIEWS
           FROM GOODS
-         WHERE id = #{id}
+         WHERE ID = #{id}
     </select>
 
 </mapper>

@@ -15,6 +15,6 @@ public class Member {
     private String name;
 
     // 평점
-    private Long grade;
+    private int grade;
 
 }

@@ -1,11 +1,14 @@
 package com.camping.dev.service;
 
 import com.camping.dev.mapper.GoodsMapper;
+import com.camping.dev.mapper.MemberMapper;
 import com.camping.dev.mapper.RentalMapper;
 import com.camping.dev.mapper.ReviewMapper;
+import com.camping.dev.model.entity.Member;
 import com.camping.dev.model.vo.GoodsDetailVO;
 import com.camping.dev.model.vo.GoodsInfoVO;
 import com.camping.dev.model.vo.GoodsSampleVO;
+import com.camping.dev.util.BCryptUtil;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,7 +31,8 @@ public class GoodsServiceImpl implements GoodsService{
     private GoodsMapper goodsMapper;
     private ReviewMapper reviewMapper;
     private RentalMapper rentalMapper;
-    private final ClassPathResource mainCsvResource = new ClassPathResource("csv/main_page_data_renew.csv");
+    private MemberMapper memberMapper;
+    private final ClassPathResource mainCsvResource = new ClassPathResource("csv/main_page_data_renew2.csv");
     private final Logger logger = LoggerFactory.getLogger("GoodsServiceImpl's log");
 
     @Override
@@ -79,14 +83,23 @@ public class GoodsServiceImpl implements GoodsService{
 
                     String goodsDetail[] = goodsLine.split(",");
                     String prdId = goodsDetail[0];
-                    String category = goodsDetail[1];
-                    String name = goodsDetail[2];
-                    int price = Integer.parseInt(goodsDetail[3]);
-                    int reviews = Integer.parseInt(goodsDetail[4]);
-                    String imageUrl = goodsDetail[5];
+                    String email = goodsDetail[1];
+                    String category = goodsDetail[2];
+                    String name = goodsDetail[3];
+                    int price = Integer.parseInt(goodsDetail[4]);
+                    int reviews = Integer.parseInt(goodsDetail[5]);
+                    String imageUrl = goodsDetail[6];
 
-                    goodsMapper.insertSampleData(prdId, category, name, price, reviews, imageUrl);
-                    goodsMapper.insertInitData(prdId, category, name, price, reviews, imageUrl);
+                    goodsMapper.insertInitData(prdId, email, category, name, price, reviews, imageUrl);
+
+                    // 초기 회원데이터 적재
+                    Member member = new Member();
+                    member.setEmail(goodsDetail[1]);
+                    member.setName(goodsDetail[1].split("@")[0]);
+                    member.setPassword(BCryptUtil.encrypt("1234"));
+                    member.setGrade( (int)(Math.random() * 5) + 1);
+                    memberMapper.insertMemberInfo(member);
+
                 }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

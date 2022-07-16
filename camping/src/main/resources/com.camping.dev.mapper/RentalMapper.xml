@@ -42,18 +42,18 @@
 
     <select id="getRentInfo" parameterType="com.camping.dev.model.vo.RentInfoRequestVO"
                              resultType="com.camping.dev.model.vo.RentInfoVO">
-    SELECT g.id
-         , g.name
-         , g.image_url
-         , g.price
-         , r.lender_email
-         , r.rental_start_date
-         , r.rental_end_date
-         , r.rent_status
-      FROM GOODS AS g
-     RIGHT OUTER JOIN RENTAL as r
-        ON g.id = r.prd_id
-     WHERE r.borrower_email = #{email};
+    SELECT GD.ID
+         , GD.NAME
+         , GD.IMAGE_URL
+         , GD.PRICE
+         , RT.LENDER_EMAIL
+         , RT.RENTAL_START_DATE
+         , RT.RENTAL_END_DATE
+         , RT.RENT_STATUS
+      FROM GOODS AS RT
+      LEFT OUTER JOIN RENTAL as GD
+        ON GD.ID = RT.PRD_ID
+     WHERE RT.BORROWER_EMAIL = #{email};
     </select>
 
 </mapper>

@@ -8,14 +8,6 @@ import java.util.List;
 
 public interface GoodsMapper {
 
-    // 초기 데이터 적재 (샘플)
-    public void insertSampleData(@Param("prdId") String prdId,
-                                 @Param("category") String category,
-                                 @Param("name") String name,
-                                 @Param("price") int price,
-                                 @Param("reviews") int reviews,
-                                 @Param("imageUrl") String imageUrl);
-
     // 메인 페이지에 보여줄 상품 데이터 로딩
     public List<GoodsSampleVO> getSampleList();
 
@@ -24,6 +16,7 @@ public interface GoodsMapper {
 
     // 초기 상품 데이터 적재
     public void insertInitData(@Param("prdId") String prdId,
+                               @Param("email") String email,
                                @Param("category") String category,
                                @Param("name") String name,
                                @Param("price") int price,

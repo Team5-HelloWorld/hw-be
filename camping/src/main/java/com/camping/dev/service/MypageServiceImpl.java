@@ -4,6 +4,7 @@ import com.camping.dev.mapper.RentalMapper;
 import com.camping.dev.model.vo.RentInfoRequestVO;
 import com.camping.dev.model.vo.RentInfoVO;
 import lombok.AllArgsConstructor;
+import org.apache.ibatis.session.SqlSessionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,16 @@ public class MypageServiceImpl implements MypageService{
     @Override
     public List<RentInfoVO> getRentInfo(RentInfoRequestVO requestVO) {
 
-        List<RentInfoVO> resultVO = rentalMapper.getRentInfo(requestVO);
+        List<RentInfoVO> resultVO = null;
+
+        try {
+            resultVO = rentalMapper.getRentInfo(requestVO);
+        } catch(SqlSessionException e) {
+            e.printStackTrace();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
         return resultVO;
 
     }
