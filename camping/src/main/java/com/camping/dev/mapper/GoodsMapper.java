@@ -26,4 +26,7 @@ public interface GoodsMapper {
     // 상품 아이디로 상품 정보 찾기
     public GoodsInfoVO getGoodsInfo(int id);
 
+    // 상품 아이디로 상품 등록자 email 검색
+    public String getLenderEmail(int id);
+
 }

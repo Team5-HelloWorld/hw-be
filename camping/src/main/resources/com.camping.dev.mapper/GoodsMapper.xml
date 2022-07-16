@@ -41,6 +41,13 @@
             )
     </insert>
 
+    <!-- 상품 아이디로 상품 등록자 email 검색 -->
+    <select id="getLenderEmail" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT LENDER_EMAIL
+        FROM GOODS
+        WHERE ID = #{id}
+    </select>
+
     <select id="getCount" parameterType="map" resultType="int">
         <![CDATA[
             SELECT COUNT(*)

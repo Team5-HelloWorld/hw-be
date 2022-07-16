@@ -1,5 +1,6 @@
 package com.camping.dev.service;
 
+import com.camping.dev.mapper.GoodsMapper;
 import com.camping.dev.mapper.RentalMapper;
 import com.camping.dev.model.vo.RentalRequestResponseVO;
 import com.camping.dev.model.vo.RentalRequestVO;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class RentalServiceImpl implements RentalService {
 
     private RentalMapper rentalMapper;
+    private GoodsMapper goodsMapper;
     private final Logger logger = LoggerFactory.getLogger("RentalServiceImpl's log");
 
     public RentalRequestResponseVO sendRentalRequest(RentalRequestVO rentalRequestVO) {
@@ -22,6 +24,7 @@ public class RentalServiceImpl implements RentalService {
 
         try {
 
+            rentalRequestVO.setLenderEmail(goodsMapper.getLenderEmail(rentalRequestVO.getId()));
             rentalMapper.insertRentalRequest(rentalRequestVO);
             resultVO.setStatus("6000");
 

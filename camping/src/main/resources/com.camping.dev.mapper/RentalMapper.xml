@@ -25,6 +25,7 @@
             RENTAL
             (
                 prd_id
+              , lender_email
               , borrower_email
               , rental_start_date
               , rental_end_date
@@ -33,6 +34,7 @@
             VALUES
             (
                 #{id}
+              , #{lenderEmail}
               , #{email}
               , #{rentalStartDate}
               , #{rentalEndDate}
