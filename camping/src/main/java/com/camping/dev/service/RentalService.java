@@ -1,14 +1,16 @@
 package com.camping.dev.service;
 
-import com.camping.dev.model.vo.RentalAcceptResponseVO;
 import com.camping.dev.model.vo.RentalAcceptVO;
-import com.camping.dev.model.vo.RentalRequestResponseVO;
+import com.camping.dev.model.vo.RentalRejectVO;
 import com.camping.dev.model.vo.RentalRequestVO;
+import com.camping.dev.model.vo.RentalResponseVO;
 
 public interface RentalService {
 
-    public RentalRequestResponseVO sendRentalRequest(RentalRequestVO rentalRequestVO);
+    public RentalResponseVO sendRentalRequest(RentalRequestVO rentalRequestVO);
 
-    public RentalAcceptResponseVO sendRentalAccept(RentalAcceptVO rentalAcceptVO);
+    public RentalResponseVO sendRentalAccept(RentalAcceptVO rentalAcceptVO);
+
+    public RentalResponseVO sendRentalReject(RentalRejectVO rentalRejectVO);
 
 }

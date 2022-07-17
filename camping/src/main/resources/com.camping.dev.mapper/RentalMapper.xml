@@ -57,6 +57,22 @@
            AND RENTAL_END_DATE = #{rentalEndDate}
     </update>
 
+
+    <!-- 상품 대여 거절 -->
+    <update id="rejectRental" parameterType="com.camping.dev.model.vo.RentalRejectVO">
+        UPDATE
+            RENTAL
+        SET
+            RENT_STATUS = "04"
+        WHERE
+            PRD_ID = #{id}
+          AND LENDER_EMAIL = #{email}
+          AND BORROWER_EMAIL = #{borrowerEmail}
+          AND RENTAL_START_DATE = #{rentalStartDate}
+          AND RENTAL_END_DATE = #{rentalEndDate}
+    </update>
+
+
     <!-- 임차인의 대여 정보 정리 -->
     <select id="getRentInfo" parameterType="com.camping.dev.model.vo.EmailRequestVO"
                              resultType="com.camping.dev.model.vo.RentInfoVO">

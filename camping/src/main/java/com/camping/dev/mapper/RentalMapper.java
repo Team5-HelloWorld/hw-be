@@ -15,6 +15,9 @@ public interface RentalMapper {
     // 대여 수락
     public void updateRental(RentalAcceptVO rentalAcceptVO);
 
+    // 대여 거절
+    public void rejectRental(RentalRejectVO rentalRejectVO);
+
     // 임차인의 대여 정보 정리
     public List<RentInfoVO> getRentInfo(EmailRequestVO emailRequestVO);
 

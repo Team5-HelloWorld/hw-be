@@ -2,10 +2,10 @@ package com.camping.dev.service;
 
 import com.camping.dev.mapper.GoodsMapper;
 import com.camping.dev.mapper.RentalMapper;
-import com.camping.dev.model.vo.RentalAcceptResponseVO;
 import com.camping.dev.model.vo.RentalAcceptVO;
-import com.camping.dev.model.vo.RentalRequestResponseVO;
+import com.camping.dev.model.vo.RentalRejectVO;
 import com.camping.dev.model.vo.RentalRequestVO;
+import com.camping.dev.model.vo.RentalResponseVO;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.session.SqlSessionException;
 import org.slf4j.Logger;
@@ -20,9 +20,10 @@ public class RentalServiceImpl implements RentalService {
     private GoodsMapper goodsMapper;
     private final Logger logger = LoggerFactory.getLogger("RentalServiceImpl's log");
 
-    public RentalRequestResponseVO sendRentalRequest(RentalRequestVO rentalRequestVO) {
+    // 대여 요청
+    public RentalResponseVO sendRentalRequest(RentalRequestVO rentalRequestVO) {
 
-        RentalRequestResponseVO resultVO = new RentalRequestResponseVO();
+        RentalResponseVO resultVO = new RentalResponseVO();
 
         try {
 
@@ -42,14 +43,36 @@ public class RentalServiceImpl implements RentalService {
     }
 
 
+    // 대여 수락
+    public RentalResponseVO sendRentalAccept(RentalAcceptVO rentalAcceptVO) {
 
-    public RentalAcceptResponseVO sendRentalAccept(RentalAcceptVO rentalAcceptVO) {
-
-        RentalAcceptResponseVO resultVO = new RentalAcceptResponseVO();
+        RentalResponseVO resultVO = new RentalResponseVO();
 
         try {
 
             rentalMapper.updateRental(rentalAcceptVO);
+            resultVO.setStatus("6000");
+
+        } catch (SqlSessionException e) {
+            e.printStackTrace();
+            resultVO.setStatus("6001");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultVO;
+
+    }
+
+
+    // 대여 거절
+    public RentalResponseVO sendRentalReject(RentalRejectVO rentalRejectVO) {
+
+        RentalResponseVO resultVO = new RentalResponseVO();
+
+        try {
+
+            rentalMapper.rejectRental(rentalRejectVO);
             resultVO.setStatus("6000");
 
         } catch (SqlSessionException e) {
