@@ -14,7 +14,10 @@ public class Member {
     // 이름
     private String name;
 
+    // 거래 건수
+    private int traded;
+
     // 평점
-    private int grade;
+    private double grade;
 
 }

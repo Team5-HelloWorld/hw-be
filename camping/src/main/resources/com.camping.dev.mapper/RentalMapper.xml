@@ -54,8 +54,9 @@
             )
     </insert>
 
+
     <!-- 상품 대여 수락 -->
-    <update id="updateRental" parameterType="com.camping.dev.model.vo.RentalAcceptVO">
+    <update id="acceptRental" parameterType="com.camping.dev.model.vo.RentalAcceptVO">
         UPDATE
                RENTAL
            SET
@@ -81,6 +82,31 @@
           AND BORROWER_EMAIL = #{borrowerEmail}
           AND RENTAL_START_DATE = #{rentalStartDate}
           AND RENTAL_END_DATE = #{rentalEndDate}
+    </update>
+
+
+    <!-- 상품 반환 전 임대인 이메일 검색 -->
+    <select id="selectLenderEmail" parameterType="com.camping.dev.model.vo.RentalReturnVO" resultType="String">
+        SELECT
+            LENDER_EMAIL
+          FROM
+            RENTAL
+         WHERE
+            PRD_ID = #{id}
+           AND BORROWER_EMAIL = #{email}
+           AND RENT_STATUS = "02"
+    </select>
+
+    <!-- 상품 반환 -->
+    <update id="returnRental" parameterType="com.camping.dev.model.vo.RentalReturnVO">
+        UPDATE
+            RENTAL
+        SET
+            RENT_STATUS = "03"
+        WHERE
+            PRD_ID = #{id}
+          AND BORROWER_EMAIL = #{email}
+          AND RENT_STATUS = "02"
     </update>
 
 

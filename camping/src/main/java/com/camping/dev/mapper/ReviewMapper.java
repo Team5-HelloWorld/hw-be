@@ -22,4 +22,10 @@ public interface ReviewMapper {
     // 상품 아이디로 리뷰 작성자 및 내용 검색
     public List<ReviewVO> getReview(int id);
 
+    // 리뷰 작성
+    public void insertReview(@Param("id") int id,
+                             @Param("email") String email,
+                             @Param("grade") int grade,
+                             @Param("review") String review);
+
 }

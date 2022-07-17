@@ -97,7 +97,8 @@ public class GoodsServiceImpl implements GoodsService{
                     member.setEmail(goodsDetail[1]);
                     member.setName(goodsDetail[1].split("@")[0]);
                     member.setPassword(BCryptUtil.encrypt("1234"));
-                    member.setGrade( (int)(Math.random() * 5) + 1);
+                    member.setTraded( (int)(Math.random() * 100) + 1);
+                    member.setGrade(Math.round(Math.random() * 50.0) / 10.0);
                     memberMapper.insertMemberInfo(member);
 
                 }

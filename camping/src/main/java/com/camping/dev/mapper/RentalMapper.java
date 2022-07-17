@@ -18,10 +18,16 @@ public interface RentalMapper {
     public void insertRentalRequest(RentalRequestVO rentalRequestVO);
 
     // 대여 수락
-    public void updateRental(RentalAcceptVO rentalAcceptVO);
+    public void acceptRental(RentalAcceptVO rentalAcceptVO);
 
     // 대여 거절
     public void rejectRental(RentalRejectVO rentalRejectVO);
+
+    // 대여 반환
+    public void returnRental(RentalReturnVO rentalReturnVO);
+
+    // 대여 반환 전 임대인 이메일 검색
+    public String selectLenderEmail(RentalReturnVO rentalReturnVO);
 
     // 임차인의 대여 정보 정리
     public List<RentInfoVO> getRentInfo(EmailRequestVO emailRequestVO);

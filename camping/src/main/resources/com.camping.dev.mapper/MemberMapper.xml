@@ -13,6 +13,7 @@
               email
             , password
             , name
+            , traded
             , grade
             )
             VALUES
@@ -20,6 +21,7 @@
               #{email}
             , #{password}
             , #{name}
+            , #{traded}
             , #{grade}
             )
     </insert>
@@ -53,6 +55,21 @@
         UPDATE MEMBER
            SET password = #{password}
          WHERE email = #{email}
+    </update>
+
+    <!-- 회원의 기존 거래 건수와 평점 검색 -->
+    <select id="selectTradedAndGrade" parameterType="String" resultType="com.camping.dev.model.vo.CalculateNewGradeVO">
+        SELECT TRADED, GRADE
+          FROM MEMBER
+         WHERE EMAIL = #{email}
+    </select>
+
+    <!-- 거래 건수 및 평점 갱신 -->
+    <update id="updateTradedAndGrade" parameterType="map">
+        UPDATE MEMBER
+           SET TRADED = #{traded}
+             , GRADE = #{grade}
+         WHERE EMAIL = #{email}
     </update>
 
 </mapper>

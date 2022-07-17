@@ -1,9 +1,6 @@
 package com.camping.dev.controller;
 
-import com.camping.dev.model.vo.RentalAcceptVO;
-import com.camping.dev.model.vo.RentalRejectVO;
-import com.camping.dev.model.vo.RentalRequestVO;
-import com.camping.dev.model.vo.RentalResponseVO;
+import com.camping.dev.model.vo.*;
 import com.camping.dev.service.RentalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +40,15 @@ public class RentalController {
     public RentalResponseVO sendRentalReject(@RequestBody RentalRejectVO rentalRejectVO) {
 
         RentalResponseVO resultVO = rentalService.sendRentalReject(rentalRejectVO);
+        return resultVO;
+
+    }
+
+    // 대여 반환 & 리뷰 작성
+    @PostMapping("/return")
+    public RentalResponseVO sendRentalReturn(@RequestBody RentalReturnVO rentalReturnVO) {
+
+        RentalResponseVO resultVO = rentalService.sendRentalReturn(rentalReturnVO);
         return resultVO;
 
     }

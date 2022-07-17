@@ -40,7 +40,8 @@ create table MEMBER(
     email varchar(50) not null primary key,
     password varchar(255) not null,
     name varchar(50) not null,
-    grade int(10)
+    traded int(10) default 0,
+    grade double default 3
 );
 
 # Rental 테이블

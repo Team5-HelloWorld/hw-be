@@ -33,4 +33,26 @@
         where prd_id = #{id}
     </select>
 
+
+    <!-- 상품 리뷰 작성 -->
+    <insert id="insertReview" parameterType="map">
+        INSERT INTO
+            REVIEW
+            (
+                prd_id
+              , email
+              , grade
+              , review
+              , delete_yn
+            )
+            VALUES
+            (
+                #{id}
+              , #{email}
+              , #{grade}
+              , #{review}
+              , false
+            )
+    </insert>
+
 </mapper>
