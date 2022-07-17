@@ -1,6 +1,7 @@
 package com.camping.dev.mapper;
 
 import com.camping.dev.model.vo.*;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -8,6 +9,10 @@ public interface RentalMapper {
 
     // 상품 아이디로 리뷰 작성자 및 내용 검색
     public List<RentalPeriodVO> getRentPeriod(int id);
+
+    // 이메일로 status 가 '01' 건이 있는 지 검색 (중복요청 방지)
+    public int countingRentInfoByEmail(@Param("id") int id,
+                                       @Param("email") String email);
 
     // 대여 요청 처리
     public void insertRentalRequest(RentalRequestVO rentalRequestVO);

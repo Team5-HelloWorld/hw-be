@@ -2,10 +2,7 @@ package com.camping.dev.service;
 
 import com.camping.dev.mapper.GoodsMapper;
 import com.camping.dev.mapper.RentalMapper;
-import com.camping.dev.model.vo.RentalAcceptVO;
-import com.camping.dev.model.vo.RentalRejectVO;
-import com.camping.dev.model.vo.RentalRequestVO;
-import com.camping.dev.model.vo.RentalResponseVO;
+import com.camping.dev.model.vo.*;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.session.SqlSessionException;
 import org.slf4j.Logger;
@@ -27,9 +24,20 @@ public class RentalServiceImpl implements RentalService {
 
         try {
 
-            rentalRequestVO.setLenderEmail(goodsMapper.getLenderEmail(rentalRequestVO.getId()));
-            rentalMapper.insertRentalRequest(rentalRequestVO);
-            resultVO.setStatus("6000");
+            if(rentalMapper.countingRentInfoByEmail(rentalRequestVO.getId(),
+                                                    rentalRequestVO.getEmail()) == 0) {
+
+                rentalRequestVO.setLenderEmail(goodsMapper.getLenderEmail(rentalRequestVO.getId()));
+                rentalMapper.insertRentalRequest(rentalRequestVO);
+                resultVO.setStatus("6000");
+
+            } else {
+
+                resultVO.setStatus("6002");    // 6002 : 중복 대여 요청
+
+            }
+
+
 
         } catch (SqlSessionException e) {
             e.printStackTrace();

@@ -20,6 +20,17 @@
         WHERE prd_id = #{id} AND rent_status = "01"    <!-- status 정의코드 적어주기 메모-->
     </select>
 
+
+    <!-- 이메일로 rentStatus = '01' 건이 있는 지 검색(중복요청 방지) -->
+    <select id="countingRentInfoByEmail" parameterType="map" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+          FROM RENTAL
+         WHERE PRD_ID = #{id}
+           AND BORROWER_EMAIL = #{email}
+           AND RENT_STATUS = '01'
+    </select>
+
+
     <!-- 상품 대여 요청 처리 -->
     <insert id="insertRentalRequest" parameterType="com.camping.dev.model.vo.RentalRequestVO">
         INSERT INTO
