@@ -2,6 +2,8 @@ package com.camping.dev.service;
 
 import com.camping.dev.mapper.GoodsMapper;
 import com.camping.dev.mapper.RentalMapper;
+import com.camping.dev.model.vo.RentalAcceptResponseVO;
+import com.camping.dev.model.vo.RentalAcceptVO;
 import com.camping.dev.model.vo.RentalRequestResponseVO;
 import com.camping.dev.model.vo.RentalRequestVO;
 import lombok.AllArgsConstructor;
@@ -26,6 +28,28 @@ public class RentalServiceImpl implements RentalService {
 
             rentalRequestVO.setLenderEmail(goodsMapper.getLenderEmail(rentalRequestVO.getId()));
             rentalMapper.insertRentalRequest(rentalRequestVO);
+            resultVO.setStatus("6000");
+
+        } catch (SqlSessionException e) {
+            e.printStackTrace();
+            resultVO.setStatus("6001");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return resultVO;
+
+    }
+
+
+
+    public RentalAcceptResponseVO sendRentalAccept(RentalAcceptVO rentalAcceptVO) {
+
+        RentalAcceptResponseVO resultVO = new RentalAcceptResponseVO();
+
+        try {
+
+            rentalMapper.updateRental(rentalAcceptVO);
             resultVO.setStatus("6000");
 
         } catch (SqlSessionException e) {

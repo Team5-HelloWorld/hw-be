@@ -10,6 +10,7 @@
         "01" : 대여 요청 중
         "02" : 현재 대여중 (임대인이 수락)
         "03" : 반환 완료 (기간 다됐거나 임차인 쪽에서 반환)
+        "04" : 대여 거절
     -->
 
     <!-- 상품 아이디로 대여 시작 날짜와 대여 종료 날짜 검색 -->
@@ -41,6 +42,20 @@
               , '01'
             )
     </insert>
+
+    <!-- 상품 대여 수락 -->
+    <update id="updateRental" parameterType="com.camping.dev.model.vo.RentalAcceptVO">
+        UPDATE
+               RENTAL
+           SET
+               RENT_STATUS = "02"
+         WHERE
+               PRD_ID = #{id}
+           AND LENDER_EMAIL = #{email}
+           AND BORROWER_EMAIL = #{borrowerEmail}
+           AND RENTAL_START_DATE = #{rentalStartDate}
+           AND RENTAL_END_DATE = #{rentalEndDate}
+    </update>
 
     <!-- 임차인의 대여 정보 정리 -->
     <select id="getRentInfo" parameterType="com.camping.dev.model.vo.EmailRequestVO"

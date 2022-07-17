@@ -12,6 +12,9 @@ public interface RentalMapper {
     // 대여 요청 처리
     public void insertRentalRequest(RentalRequestVO rentalRequestVO);
 
+    // 대여 수락
+    public void updateRental(RentalAcceptVO rentalAcceptVO);
+
     // 임차인의 대여 정보 정리
     public List<RentInfoVO> getRentInfo(EmailRequestVO emailRequestVO);
 
