@@ -124,12 +124,12 @@
       FROM RENTAL AS RT
       LEFT OUTER JOIN GOODS as GD
         ON GD.ID = RT.PRD_ID
-     WHERE RT.BORROWER_EMAIL = #{email};
+     WHERE RT.BORROWER_EMAIL = #{email}
     </select>
 
     <!-- 임대인의 대여 정보 정리 -->
     <select id="getLendInfo" parameterType="com.camping.dev.model.vo.EmailRequestVO"
-            resultType="com.camping.dev.model.vo.LendInfoVO">
+                             resultType="com.camping.dev.model.vo.LendInfoVO">
         SELECT GD.ID
              , GD.NAME
              , GD.IMAGE_URL
@@ -141,7 +141,62 @@
           FROM RENTAL AS RT
           LEFT OUTER JOIN GOODS as GD
            ON GD.ID = RT.PRD_ID
-        WHERE RT.LENDER_EMAIL = #{email};
+        WHERE RT.LENDER_EMAIL = #{email}
+    </select>
+
+
+    <!-- 임차 정보 건수 확인 -->
+    <select id="getMyRentTotal" parameterType="com.camping.dev.model.vo.EmailRequestVO"
+                                resultType="java.lang.Integer">
+        SELECT COUNT(*)
+          FROM RENTAL AS RT
+         INNER JOIN GOODS AS GD
+            ON GD.ID = RT.PRD_ID
+         WHERE RT.LENDER_EMAIL = #{email}
+    </select>
+
+
+    <!-- 임차 정보 (빌려 주는 대여 건수들) 정리 -->
+    <select id="getMyRentInfo" parameterType="com.camping.dev.model.vo.EmailRequestVO"
+                               resultType="com.camping.dev.model.vo.MyRentInfoVO">
+        SELECT GD.ID
+             , GD.NAME
+             , GD.IMAGE_URL
+             , GD.PRICE
+             , RT.RENTAL_START_DATE
+             , RT.RENTAL_END_DATE
+             , RT.RENT_STATUS
+          FROM RENTAL AS RT
+         INNER JOIN GOODS as GD
+            ON GD.ID = RT.PRD_ID
+         WHERE RT.LENDER_EMAIL = #{email}
+    </select>
+
+
+    <!-- 임대 정보 건수 확인 -->
+    <select id="getMyLendTotal" parameterType="com.camping.dev.model.vo.EmailRequestVO"
+                                resultType="java.lang.Integer">
+        SELECT COUNT(*)
+          FROM RENTAL AS RT
+         INNER JOIN GOODS AS GD
+            ON GD.ID = RT.PRD_ID
+         WHERE RT.BORROWER_EMAIL = #{email}
+    </select>
+
+    <!-- 임대 정보 (빌리는 대여 건수들) 정리 -->
+    <select id="getMyLendInfo" parameterType="com.camping.dev.model.vo.EmailRequestVO"
+                               resultType="com.camping.dev.model.vo.MyLendInfoVO">
+        SELECT GD.ID
+             , GD.NAME
+             , GD.IMAGE_URL
+             , GD.PRICE
+             , RT.RENTAL_START_DATE
+             , RT.RENTAL_END_DATE
+             , RT.RENT_STATUS
+          FROM RENTAL AS RT
+         INNER JOIN GOODS as GD
+            ON GD.ID = RT.PRD_ID
+         WHERE RT.BORROWER_EMAIL = #{email}
     </select>
 
 </mapper>

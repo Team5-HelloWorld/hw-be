@@ -2,6 +2,7 @@ package com.camping.dev.controller;
 
 import com.camping.dev.model.vo.LendInfoVO;
 import com.camping.dev.model.vo.EmailRequestVO;
+import com.camping.dev.model.vo.MypageOverviewVO;
 import com.camping.dev.model.vo.RentInfoVO;
 import com.camping.dev.service.MypageService;
 import org.slf4j.Logger;
@@ -33,6 +34,14 @@ public class MypageController {
     public List<LendInfoVO> getLendInfo(@RequestBody EmailRequestVO requestVO) {
 
         List<LendInfoVO> resultVO = mypageService.getLendInfo(requestVO);
+        return resultVO;
+
+    }
+
+    @PostMapping("/overview")
+    public MypageOverviewVO getOverview(@RequestBody EmailRequestVO requestVO) {
+
+        MypageOverviewVO resultVO = mypageService.getOverview(requestVO);
         return resultVO;
 
     }

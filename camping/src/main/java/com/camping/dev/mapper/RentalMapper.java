@@ -35,4 +35,16 @@ public interface RentalMapper {
     // 임대인의 정보 정리
     public List<LendInfoVO> getLendInfo(EmailRequestVO emailRequestVO);
 
+    // 임차 정보 건수 확인
+    public int getMyRentTotal(EmailRequestVO emailRequestVO);
+
+    // 임차 정보 (빌려 주는 대여 건수들) 정리
+    public List<MyRentInfoVO> getMyRentInfo(EmailRequestVO emailRequestVO);
+
+    // 임대 정보 건수 확인
+    public int getMyLendTotal(EmailRequestVO emailRequestVO);
+
+    // 임대 정보 (빌리는 대여 건수들) 정리
+    public List<MyLendInfoVO> getMyLendInfo(EmailRequestVO emailRequestVO);
+
 }
