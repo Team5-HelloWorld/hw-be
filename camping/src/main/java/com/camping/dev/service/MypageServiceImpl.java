@@ -93,11 +93,11 @@ public class MypageServiceImpl implements MypageService{
                     }
 
                 }
-                resultVO.setLendTotal(rentTotal);
-                resultVO.setLendRequestTotal(rentRequestTotal);
-                resultVO.setLendingTotal(rentingTotal);
-                resultVO.setLendCompleteTotal(rentCompleteTotal);
-                resultVO.setLendPriceSum(rentPriceSum);
+                resultVO.setRentTotal(rentTotal);
+                resultVO.setRentRequestTotal(rentRequestTotal);
+                resultVO.setRentingTotal(rentingTotal);
+                resultVO.setRentCompleteTotal(rentCompleteTotal);
+                resultVO.setRentPriceSum(rentPriceSum);
 
             }
 
