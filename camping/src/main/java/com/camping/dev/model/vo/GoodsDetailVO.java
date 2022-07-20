@@ -22,6 +22,9 @@ public class GoodsDetailVO {
     // reviews : 리뷰 수
     private int reviews;
 
+    // grade : 상품평점
+    private double grade;
+
     // goodsInfo : 상품 상세정보
     private String goodsInfo;
 

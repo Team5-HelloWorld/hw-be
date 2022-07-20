@@ -17,6 +17,12 @@
         values (#{prdId}, #{userId}, #{grade}, #{review})
     </insert>
 
+    <select id="getInitGoodsInfo" resultType="com.camping.dev.model.vo.InitGoodsInfoVO">
+        SELECT PRD_ID_TMP, COUNT(PRD_ID_TMP) AS cntReview, AVG(GRADE) AS avgGrade
+          FROM REVIEW
+      GROUP BY PRD_ID_TMP;
+    </select>
+
     <update id="updateId">
         <![CDATA[
             update review r

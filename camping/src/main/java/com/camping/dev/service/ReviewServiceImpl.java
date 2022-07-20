@@ -1,6 +1,9 @@
 package com.camping.dev.service;
 
+import com.camping.dev.mapper.GoodsMapper;
+import com.camping.dev.mapper.MemberMapper;
 import com.camping.dev.mapper.ReviewMapper;
+import com.camping.dev.model.vo.InitGoodsInfoVO;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +16,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
 public class ReviewServiceImpl implements  ReviewService {
 
+    private GoodsMapper goodsMapper;
     private ReviewMapper reviewMapper;
 
     private final ClassPathResource reviewCsvResource = new ClassPathResource("csv/reviews_by_prd_4_cols.csv");
@@ -55,6 +60,15 @@ public class ReviewServiceImpl implements  ReviewService {
                     reviewMapper.insertInitData(prdId, userId, grade, review);
 
                 }
+
+                // 리뷰 테이블을 기반으로 상품 테이블에 적재할 리뷰 수와 평점 평균 계산 후 상품 테이블에 적재
+                List<InitGoodsInfoVO> initGoodsInfos = reviewMapper.getInitGoodsInfo();
+                for(InitGoodsInfoVO initGoodsInfoVO : initGoodsInfos) {
+                    goodsMapper.updateReviewAndGrade(initGoodsInfoVO.getPrdIdTmp(),
+                                                     initGoodsInfoVO.getCntReview(),
+                                                     initGoodsInfoVO.getAvgGrade());
+                }
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {

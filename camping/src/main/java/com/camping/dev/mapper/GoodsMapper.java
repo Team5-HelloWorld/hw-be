@@ -1,5 +1,6 @@
 package com.camping.dev.mapper;
 
+import com.camping.dev.model.vo.CalculateGoodsGradeVO;
 import com.camping.dev.model.vo.GoodsInfoVO;
 import com.camping.dev.model.vo.GoodsSampleVO;
 import org.apache.ibatis.annotations.Param;
@@ -20,13 +21,25 @@ public interface GoodsMapper {
                                @Param("category") String category,
                                @Param("name") String name,
                                @Param("price") int price,
-                               @Param("reviews") int reviews,
                                @Param("imageUrl") String imageUrl);
+
+    // 리뷰 테이블에서 추출한 상품별 리뷰 갯수 및 평균 평점을 상품 테이블에 적재
+    public void updateReviewAndGrade(@Param("prdIdTmp") String prdIdTmp,
+                                     @Param("cntReview") int cntReview,
+                                     @Param("avgGrade") double avgGrade);
 
     // 상품 아이디로 상품 정보 찾기
     public GoodsInfoVO getGoodsInfo(int id);
 
     // 상품 아이디로 상품 등록자 email 검색
     public String getLenderEmail(int id);
+
+    // 상품 기존 리뷰수와 평점 검색
+    public CalculateGoodsGradeVO selectReviewsAndGrade(int id);
+
+    // 상품 리뷰 수 및  평점 갱신
+    public void updateNewReviewAndNewGrade(@Param("id") int id,
+                                           @Param("reviews") int reviews,
+                                           @Param("grade") double grade);
 
 }

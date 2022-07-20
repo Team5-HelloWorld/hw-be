@@ -3,9 +3,9 @@ package com.camping.dev.model.vo;
 import lombok.Data;
 
 @Data
-public class CalculateNewGradeVO {
+public class CalculateGoodsGradeVO {
 
-    private int traded;
+    private int reviews;
 
     private double grade;
 

@@ -20,4 +20,7 @@ public class GoodsInfoVO {
     // reviews : 리뷰 수
     private int reviews;
 
+    // grade : 상품 평점
+    private double grade;
+
 }

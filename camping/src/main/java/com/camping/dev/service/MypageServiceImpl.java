@@ -1,5 +1,6 @@
 package com.camping.dev.service;
 
+import com.camping.dev.mapper.MemberMapper;
 import com.camping.dev.mapper.RentalMapper;
 import com.camping.dev.model.vo.*;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class MypageServiceImpl implements MypageService{
 
+    private MemberMapper memberMapper;
     private RentalMapper rentalMapper;
     private final Logger logger = LoggerFactory.getLogger("MypageServiceImpl's log");
 
@@ -130,6 +132,9 @@ public class MypageServiceImpl implements MypageService{
                 resultVO.setLendPriceSum(lendPriceSum);
 
             }
+
+            // 유저 평점 검색
+            resultVO.setGrade(memberMapper.searchGrade(requestVO));
 
         } catch(SqlSessionException e) {
             e.printStackTrace();

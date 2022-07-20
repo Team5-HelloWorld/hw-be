@@ -7,6 +7,9 @@ import java.util.List;
 @Data
 public class MypageOverviewVO {
 
+    // 유저 평점
+    private double grade;
+    
     // 총 임차 건수
     private int rentTotal;
 

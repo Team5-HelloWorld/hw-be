@@ -58,11 +58,12 @@
     </update>
 
     <!-- 회원의 기존 거래 건수와 평점 검색 -->
-    <select id="selectTradedAndGrade" parameterType="String" resultType="com.camping.dev.model.vo.CalculateNewGradeVO">
+    <select id="selectTradedAndGrade" parameterType="String" resultType="com.camping.dev.model.vo.CalculateUserGradeVO">
         SELECT TRADED, GRADE
           FROM MEMBER
          WHERE EMAIL = #{email}
     </select>
+
 
     <!-- 거래 건수 및 평점 갱신 -->
     <update id="updateTradedAndGrade" parameterType="map">
@@ -71,5 +72,13 @@
              , GRADE = #{grade}
          WHERE EMAIL = #{email}
     </update>
+
+
+    <!-- 유저 평점 검색 -->
+    <select id="searchGrade" parameterType="com.camping.dev.model.vo.EmailRequestVO" resultType="double">
+        SELECT GRADE
+          FROM MEMBER
+         WHERE EMAIL = #{email}
+    </select>
 
 </mapper>

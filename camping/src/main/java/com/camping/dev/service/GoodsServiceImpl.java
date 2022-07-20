@@ -87,10 +87,9 @@ public class GoodsServiceImpl implements GoodsService{
                     String category = goodsDetail[2];
                     String name = goodsDetail[3];
                     int price = Integer.parseInt(goodsDetail[4]);
-                    int reviews = Integer.parseInt(goodsDetail[5]);
                     String imageUrl = goodsDetail[6];
 
-                    goodsMapper.insertInitData(prdId, email, category, name, price, reviews, imageUrl);
+                    goodsMapper.insertInitData(prdId, email, category, name, price, imageUrl);
 
                     // 초기 회원데이터 적재
                     Member member = new Member();

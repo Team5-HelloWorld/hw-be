@@ -1,5 +1,6 @@
 package com.camping.dev.mapper;
 
+import com.camping.dev.model.vo.InitGoodsInfoVO;
 import com.camping.dev.model.vo.ReviewVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,6 +16,9 @@ public interface ReviewMapper {
                                @Param("userId") String userId,
                                @Param("grade") int grade,
                                @Param("review") String review);
+
+    // 초기 상품 리뷰 개수 및 평균 검색
+    public List<InitGoodsInfoVO> getInitGoodsInfo();
 
     // 리뷰 테이블에 상품 테이블의 id update
     public void updateId();

@@ -20,7 +20,7 @@ create table GOODS(
     price int(10),
     lender_email varchar(50),
     reviews int(10),
-    register_date varchar(20)
+    grade double
 );
 
 # Review 테이블
@@ -30,9 +30,7 @@ create table REVIEW(
     prd_id_tmp varchar(50) default '0',
     email varchar(100),
     grade int(10),
-    result_yn boolean,
-    review varchar(4000),
-    delete_yn boolean
+    review varchar(4000)
 );
 
 # Member 테이블
