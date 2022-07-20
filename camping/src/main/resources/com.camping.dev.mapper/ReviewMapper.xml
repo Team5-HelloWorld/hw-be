@@ -49,7 +49,6 @@
               , email
               , grade
               , review
-              , delete_yn
             )
             VALUES
             (
@@ -57,7 +56,6 @@
               , #{email}
               , #{grade}
               , #{review}
-              , false
             )
     </insert>
 
