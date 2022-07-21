@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Service
@@ -57,6 +58,7 @@ public class MypageServiceImpl implements MypageService{
     public MypageOverviewVO getOverview(EmailRequestVO requestVO) {
 
         MypageOverviewVO resultVO = new MypageOverviewVO();
+        DecimalFormat formatter = new DecimalFormat("###,###,###,###");   // 화폐 단위 구분을 위한 패턴
 
         /**
          *  대여 요청 코드
@@ -82,19 +84,20 @@ public class MypageServiceImpl implements MypageService{
                 int rentRequestTotal = 0;
                 int rentingTotal = 0;
                 int rentCompleteTotal = 0;
-                int rentPriceSum = 0;
+                int rentPriceSumTmp = 0;
                 for(MyRentInfoVO rentInfo : rentInfos) {
                     if("01".equals(rentInfo.getRentStatus())) {
                         rentRequestTotal++;
                     } else if("02".equals(rentInfo.getRentStatus())) {
                         rentingTotal++;
-                        rentPriceSum += (rentInfo.getPrice());
+                        rentPriceSumTmp += (rentInfo.getPrice());
                     } else if("03".equals(rentInfo.getRentStatus())) {
                         rentCompleteTotal++;
-                        rentPriceSum += (rentInfo.getPrice());
+                        rentPriceSumTmp += (rentInfo.getPrice());
                     }
 
                 }
+                String rentPriceSum = formatter.format(rentPriceSumTmp);
                 resultVO.setRentTotal(rentTotal);
                 resultVO.setRentRequestTotal(rentRequestTotal);
                 resultVO.setRentingTotal(rentingTotal);
@@ -112,19 +115,20 @@ public class MypageServiceImpl implements MypageService{
                 int lendingTotal = 0;
                 int lendRequestTotal = 0;
                 int lendCompleteTotal = 0;
-                int lendPriceSum = 0;
+                int lendPriceSumTmp = 0;
                 for(MyLendInfoVO lendInfo : lendInfos) {
                     if("01".equals(lendInfo.getRentStatus())) {
                         lendRequestTotal++;
                     } else if("02".equals(lendInfo.getRentStatus())) {
                         lendingTotal++;
-                        lendPriceSum += (lendInfo.getPrice());
+                        lendPriceSumTmp += (lendInfo.getPrice());
                     } else if("03".equals(lendInfo.getRentStatus())) {
                         lendCompleteTotal++;
-                        lendPriceSum += (lendInfo.getPrice());
+                        lendPriceSumTmp += (lendInfo.getPrice());
                     }
 
                 }
+                String lendPriceSum = formatter.format(lendPriceSumTmp);
                 resultVO.setLendTotal(lendTotal);
                 resultVO.setLendRequestTotal(lendRequestTotal);
                 resultVO.setLendingTotal(lendingTotal);

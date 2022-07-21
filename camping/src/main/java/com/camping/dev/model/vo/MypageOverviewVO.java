@@ -23,7 +23,7 @@ public class MypageOverviewVO {
     private int rentCompleteTotal;
 
     // 임차 총 금액
-    private long rentPriceSum;
+    private String rentPriceSum;
 
 
 
@@ -40,7 +40,7 @@ public class MypageOverviewVO {
     private int lendCompleteTotal;
 
     // 임대 총 금액
-    private long lendPriceSum;
+    private String lendPriceSum;
 
 
 
