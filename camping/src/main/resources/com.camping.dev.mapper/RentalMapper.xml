@@ -168,6 +168,7 @@
              , (SELECT CODE_DETAIL
                   FROM CODE
                  WHERE CODE_NAME = RT.RENT_STATUS) RENT_STATUS
+             , RT.RENT_STATUS AS RENT_CODE_NUMBER
           FROM RENTAL AS RT
          INNER JOIN GOODS as GD
             ON GD.ID = RT.PRD_ID
@@ -197,6 +198,7 @@
              , (SELECT CODE_DETAIL
                   FROM CODE
                  WHERE CODE_NAME = RT.RENT_STATUS) RENT_STATUS
+             , RT.RENT_STATUS AS RENT_CODE_NUMBER
           FROM RENTAL AS RT
          INNER JOIN GOODS as GD
             ON GD.ID = RT.PRD_ID

@@ -26,4 +26,7 @@ public class MyRentInfoVO {
     // 대여 상태
     private String rentStatus;
 
+    // 대여 코드 넘버
+    private String rentCodeNumber;
+
 }

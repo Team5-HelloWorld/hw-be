@@ -86,12 +86,12 @@ public class MypageServiceImpl implements MypageService{
                 int rentCompleteTotal = 0;
                 int rentPriceSumTmp = 0;
                 for(MyRentInfoVO rentInfo : rentInfos) {
-                    if("01".equals(rentInfo.getRentStatus())) {
+                    if("01".equals(rentInfo.getRentCodeNumber())) {
                         rentRequestTotal++;
-                    } else if("02".equals(rentInfo.getRentStatus())) {
+                    } else if("02".equals(rentInfo.getRentCodeNumber())) {
                         rentingTotal++;
                         rentPriceSumTmp += (rentInfo.getPrice());
-                    } else if("03".equals(rentInfo.getRentStatus())) {
+                    } else if("03".equals(rentInfo.getRentCodeNumber())) {
                         rentCompleteTotal++;
                         rentPriceSumTmp += (rentInfo.getPrice());
                     }
@@ -117,12 +117,12 @@ public class MypageServiceImpl implements MypageService{
                 int lendCompleteTotal = 0;
                 int lendPriceSumTmp = 0;
                 for(MyLendInfoVO lendInfo : lendInfos) {
-                    if("01".equals(lendInfo.getRentStatus())) {
+                    if("01".equals(lendInfo.getRentCodeNumber())) {
                         lendRequestTotal++;
-                    } else if("02".equals(lendInfo.getRentStatus())) {
+                    } else if("02".equals(lendInfo.getRentCodeNumber())) {
                         lendingTotal++;
                         lendPriceSumTmp += (lendInfo.getPrice());
-                    } else if("03".equals(lendInfo.getRentStatus())) {
+                    } else if("03".equals(lendInfo.getRentCodeNumber())) {
                         lendCompleteTotal++;
                         lendPriceSumTmp += (lendInfo.getPrice());
                     }
