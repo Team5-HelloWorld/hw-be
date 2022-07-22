@@ -25,7 +25,7 @@ public class ReviewServiceImpl implements  ReviewService {
     private GoodsMapper goodsMapper;
     private ReviewMapper reviewMapper;
 
-    private final ClassPathResource reviewCsvResource = new ClassPathResource("csv/reviews_by_prd_4_cols.csv");
+    private final ClassPathResource reviewCsvResource = new ClassPathResource("csv/reviews_by_prd_4_cols_useremail.csv");
     private final Logger logger = LoggerFactory.getLogger("ReviewServiceImpl's log");
 
     @PostConstruct
@@ -47,12 +47,12 @@ public class ReviewServiceImpl implements  ReviewService {
                 while ((line = reviewsReader.readLine()) != null) {
 
                     String reviewDetail[] = line.split(",");
-                    String prdId = reviewDetail[0];
-                    String userId = reviewDetail[1];
+                    String prdId = reviewDetail[1];
+                    String userId = reviewDetail[2];
 
                     // review 에 콤마가 있을 수 있기 때문에 grade 전까지의 스트링을 review 에 모두 넣음.
                     String review = "";
-                    for(int i = 2; i < reviewDetail.length - 1; i++)
+                    for(int i = 3; i < reviewDetail.length - 1; i++)
                         review += reviewDetail[i];
 
                     int grade = Integer.parseInt(reviewDetail[reviewDetail.length - 1]);

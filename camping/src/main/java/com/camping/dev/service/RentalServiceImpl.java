@@ -169,11 +169,6 @@ public class RentalServiceImpl implements RentalService {
         HttpURLConnection conn = null;
         double grade = 0;
 
-        /**
-         * 리뷰메세지를 리뷰테이블에 적재
-         * 리뷰테이블에 들어가는 평점은 ML 모델 API 에 리뷰메세지를 넣어서 추출한 값
-         */
-
         try {
             URL url = new URL("http://54.180.64.59:5000/predict");
             conn = (HttpURLConnection)url.openConnection();
